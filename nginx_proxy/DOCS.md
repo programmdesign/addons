@@ -13,7 +13,7 @@ Follow these steps to get the add-on installed on your system:
 The NGINX Proxy add-on is commonly used in conjunction with the [Duck DNS](https://github.com/home-assistant/addons/tree/master/duckdns) and/or the [Let's Encrypt](https://github.com/home-assistant/addons/tree/master/letsencrypt) add-on to set up secure remote access to your Home Assistant instance. The following instructions covers this scenario.
 
 1. The certificate to your registered domain should already be created via [Duck DNS](https://github.com/home-assistant/addons/tree/master/duckdns), [Let's Encrypt](https://github.com/home-assistant/addons/tree/master/letsencrypt) or another method. Make sure that the certificate files exist in the `/ssl` directory.
-2. You must add the following section to your [Home Assistant configuration.yaml](https://www.home-assistant.io/docs/configuration/). If the `http` section is using the `ssl_certificate`, `ssl_key` or `server_port` keys, make sure to remove them.
+2. You must add the following section to your [Home Assistant configuration.yaml](https://www.home-assistant.io/docs/configuration/). Add your Home Assistant URL to `trusted_proxies`. If the `http` section is using the `ssl_certificate`, `ssl_key` or `server_port` keys, make sure to remove them. 
 
    ```yaml
    http:
@@ -24,9 +24,10 @@ The NGINX Proxy add-on is commonly used in conjunction with the [Duck DNS](https
 3. In the nginx addon configuration, change the `domain` option to the domain name you registered (from DuckDNS or any other domain you control).
 4. Leave all other options as-is.
 5. Save configuration.
-6. Start the add-on.
-7. Have some patience and wait a couple of minutes.
-8. Check the add-on log output to see the result.
+6. If you are using port forwarding on your router, ensure that the external port `443` is forwarded to port `443` (or any port configured in the nginx addon configuration).
+7. Start the add-on.
+8. Have some patience and wait a couple of minutes.
+9. Check the add-on log output to see the result.
 
 
 ## Configuration
